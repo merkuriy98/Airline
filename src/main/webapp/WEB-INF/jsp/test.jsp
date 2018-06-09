@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-    <c:out value='${requestScope["hello"]}'/>
+    <c:out value='${test.id}'/>
 </h1>
 </body>
 </html>
