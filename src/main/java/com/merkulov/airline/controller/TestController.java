@@ -1,4 +1,4 @@
-package ua.nure.merkulov.logic.controllers;
+package com.merkulov.airline.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +13,6 @@ public class TestController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String hello = "Hello, World!";
         req.setAttribute("hello", hello);
-        req.getRequestDispatcher("/jsp/test.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/jsp/test.jsp").forward(req,resp);
     }
 }
