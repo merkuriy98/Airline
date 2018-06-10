@@ -1,11 +1,12 @@
 package com.merkulov.airline.repository.converter.impl;
 
 import com.merkulov.airline.entity.Test;
+import com.merkulov.airline.repository.converter.SqlConverter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TestSqlConverter implements com.merkulov.airline.repository.converter.SqlConverter<com.merkulov.airline.entity.Test> {
+public class TestSqlConverter implements SqlConverter<Test> {
 
 
     @Override

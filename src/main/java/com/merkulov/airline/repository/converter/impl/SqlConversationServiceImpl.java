@@ -1,6 +1,8 @@
 package com.merkulov.airline.repository.converter.impl;
 
 import com.merkulov.airline.entity.Test;
+import com.merkulov.airline.repository.converter.SqlConversationService;
+import com.merkulov.airline.repository.converter.SqlConverter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SqlConversationServiceImpl implements com.merkulov.airline.repository.converter.SqlConversationService {
-    private Map<Class, com.merkulov.airline.repository.converter.SqlConverter> converters;
+public class SqlConversationServiceImpl implements SqlConversationService {
+    private Map<Class, SqlConverter> converters;
 
     public SqlConversationServiceImpl() {
         converters = new HashMap<>();
