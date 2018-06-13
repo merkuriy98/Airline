@@ -1,6 +1,7 @@
 package com.merkulov.airline.service.impl;
 
 import com.merkulov.airline.entity.Test;
+import com.merkulov.airline.entity.User;
 import com.merkulov.airline.repository.TestRepository;
 import com.merkulov.airline.repository.transaction.TransactionManager;
 import com.merkulov.airline.service.TestService;
@@ -20,4 +21,5 @@ public class TestServiceImpl implements TestService {
                 connection ->
                         testRepository.getFirstTest(connection));
     }
+
 }

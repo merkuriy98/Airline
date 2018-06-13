@@ -1,12 +1,14 @@
 package com.merkulov.airline.repository.impl;
 
 import com.merkulov.airline.entity.Test;
+import com.merkulov.airline.entity.User;
 import com.merkulov.airline.repository.TestRepository;
 import com.merkulov.airline.repository.converter.SqlConversationService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class TestRepositoryImpl implements TestRepository {
     private static final String SELECT_TEST = "select * from test";
@@ -22,6 +24,6 @@ public class TestRepositoryImpl implements TestRepository {
         ResultSet resultSet = connection.createStatement().executeQuery(SELECT_TEST);
 
         return sqlConversationService.convertToList(resultSet, Test.class).get(0);
-
     }
+
 }

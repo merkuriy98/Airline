@@ -1,6 +1,7 @@
 package com.merkulov.airline.repository.converter.impl;
 
 import com.merkulov.airline.entity.Test;
+import com.merkulov.airline.entity.User;
 import com.merkulov.airline.repository.converter.SqlConversationService;
 import com.merkulov.airline.repository.converter.SqlConverter;
 
@@ -14,9 +15,12 @@ import java.util.Map;
 public class SqlConversationServiceImpl implements SqlConversationService {
     private Map<Class, SqlConverter> converters;
 
-    public SqlConversationServiceImpl() {
+    public SqlConversationServiceImpl(Class clazz) {
         converters = new HashMap<>();
-        converters.put(Test.class, new TestSqlConverter());
+        if(clazz.equals(Test.class))
+            converters.put(Test.class, new TestSqlConverter());
+        if(clazz.equals(User.class))
+            converters.put(User.class, new UserSqlConverter());
     }
 
     @Override
