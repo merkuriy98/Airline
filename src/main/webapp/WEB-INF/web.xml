@@ -8,10 +8,16 @@
         <listener-class>com.merkulov.airline.config.ApplicationServletContextListener</listener-class>
     </listener>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/exception.jsp</location>
+    </error-page>
+
     <resource-ref>
         <res-ref-name>jdbc/airline</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
+
 
 </web-app>

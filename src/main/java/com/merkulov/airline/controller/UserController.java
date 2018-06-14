@@ -1,6 +1,5 @@
 package com.merkulov.airline.controller;
 
-import com.merkulov.airline.service.TestService;
 import com.merkulov.airline.service.UserService;
 import org.apache.log4j.Logger;
 
@@ -18,16 +17,17 @@ import static com.merkulov.airline.constant.JspConstants.USER_JSP;
 @WebServlet("/user")
 public class UserController extends HttpServlet {
     private UserService userService;
-    private static final Logger LOG = Logger.getLogger(TestController.class);
+    private static final Logger LOG = Logger.getLogger(UserController.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         userService = (UserService) config.getServletContext().getAttribute(USER_SERVICE);
+        LOG.info("UserController init");
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("user", userService.getAllUsers());
-        req.getRequestDispatcher(USER_JSP).forward(req,resp);
+            req.setAttribute("user", userService.getAllUsers());
+            req.getRequestDispatcher(USER_JSP).forward(req, resp);
     }
 }

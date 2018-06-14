@@ -21,12 +21,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return transactionManager.transaction(
-                new TransactionMethod<List<User>>() {
-                    @Override
-                    public List<User> execute(Connection connection) throws SQLException {
-                        return userRepository.getAllusers(connection);
-                    }
-                }
+                connection -> userRepository.getAllUsers(connection)
         );
+    }
+
+    @Override
+    public boolean insertUser(User user) {
+        return transactionManager.transaction(
+                connection -> userRepository.insertUser(connection,user));
     }
 }
