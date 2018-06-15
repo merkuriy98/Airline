@@ -26,7 +26,7 @@ public class FilterException implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try{
             filterChain.doFilter(servletRequest,servletResponse);
-            LOG.info("request transfer to servlet");
+            LOG.info("FilterException request transfer to servlet");
         }catch (Exception ex){
             LOG.debug("Error in FilterException " + ex.getMessage());
             servletRequest.getRequestDispatcher(EXCEPTION_JSP).forward(servletRequest,servletResponse);

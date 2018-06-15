@@ -15,7 +15,7 @@ public class UserSqlConverter implements SqlConverter<User> {
         user.setFirstName(resultSet.getString("first_name"));
         user.setLastName(resultSet.getString("last_name"));
         user.setLogin(resultSet.getString("login"));
-        user.setBirthday(resultSet.getDate("birthday"));
+        user.setBirthday(resultSet.getString("birthday"));
         user.setPhone(resultSet.getString("phone"));
         user.setPassword(resultSet.getString("password"));
 

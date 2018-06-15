@@ -30,4 +30,10 @@ public class UserServiceImpl implements UserService {
         return transactionManager.transaction(
                 connection -> userRepository.insertUser(connection,user));
     }
+
+    @Override
+    public User authorization(String login, String password) {
+        return transactionManager.transaction(
+                connection -> userRepository.authorization(connection,login,password));
+    }
 }

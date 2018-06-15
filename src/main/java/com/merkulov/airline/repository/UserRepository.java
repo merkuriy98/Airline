@@ -11,4 +11,5 @@ import java.util.List;
 public interface UserRepository {
     List<User> getAllUsers(Connection connection) throws SQLException;
     boolean insertUser(Connection connection, User user) throws SQLException;
+    User authorization (Connection connection, String login, String password) throws SQLException;
 }

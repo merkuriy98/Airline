@@ -7,9 +7,20 @@ public class User {
     private String firstName;
     private String lastName;
     private String login;
-    private Date birthday;
+    private String birthday;
     private String phone;
     private String password;
+
+    public User(){};
+
+    public User(String firstName, String lastName, String login, String birthday, String phone, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -43,11 +54,11 @@ public class User {
         this.login = login;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
