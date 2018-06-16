@@ -1,5 +1,6 @@
 package com.merkulov.airline.config;
 
+import com.merkulov.airline.controller.converter.impl.RequestConversationServiceImpl;
 import com.merkulov.airline.entity.User;
 import com.merkulov.airline.repository.UserRepository;
 import com.merkulov.airline.repository.converter.SqlConversationService;
@@ -19,14 +20,21 @@ import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
 
 public class ApplicationServletContextListener implements ServletContextListener {
-    public static final String USER_SERVICE = "userService";
     private static final Logger LOG = Logger.getLogger(ApplicationServletContextListener.class);
+
+    public static final String USER_SERVICE = "userService";
+    public static final String REQUEST_CONVERSATION_SERVICE = "requestConversationService";
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         TransactionManager transactionManager = initTransactionManager();
         ServletContext servletContext = servletContextEvent.getServletContext();
         initService(servletContext, transactionManager);
+        initRequestConversationService(servletContext);
+    }
+
+    private void initRequestConversationService(ServletContext servletContext) {
+        servletContext.setAttribute(REQUEST_CONVERSATION_SERVICE, new RequestConversationServiceImpl());
     }
 
     private TransactionManager initTransactionManager() {
@@ -41,10 +49,10 @@ public class ApplicationServletContextListener implements ServletContextListener
 
     private void initService(ServletContext servletContext, TransactionManager transactionManager) {
 
-        SqlConversationService sqlConversationServiceUser = new SqlConversationServiceImpl(User.class);
+        SqlConversationService sqlConversationService = new SqlConversationServiceImpl();
 
-        UserRepository userRepository = new UserRepositoryIml(sqlConversationServiceUser);
-        servletContext.setAttribute(USER_SERVICE, new UserServiceImpl(transactionManager,userRepository));
+        UserRepository userRepository = new UserRepositoryIml(sqlConversationService);
+        servletContext.setAttribute(USER_SERVICE, new UserServiceImpl(transactionManager, userRepository));
 
         String pref = servletContext.getRealPath("/" + "WEB-INF/log4j.properties");
         PropertyConfigurator.configure(pref);

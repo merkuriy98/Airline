@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="POST" action="/entry">
+<form method="POST" action="/registration">
     <table>
         <tr>
             <td>Имя</td>
@@ -22,26 +22,8 @@
         </tr>
         <tr>
             <td>Дата Рождения</td>
-            <td>Год
-                <select name="year" size="1">
-                    <c:forEach begin="1950" end="2018" var="i">
-                        <option><c:out value='${i}'/></option>
-                    </c:forEach>
-                </select>
-            </td>
-            <td>Месяц
-                <select name="month" size="1">
-                    <c:forEach begin="1" end="12" var="i">
-                        <option><c:out value='${i}'/></option>
-                    </c:forEach>
-                </select>
-            </td>
-            <td>День
-                <select name="day" size="1">
-                    <c:forEach begin="1" end="31" var="i">
-                        <option><c:out value='${i}'/></option>
-                    </c:forEach>
-                </select>
+            <td>
+                <input type="date" name="date">
             </td>
         </tr>
         <tr>

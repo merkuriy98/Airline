@@ -2,7 +2,7 @@
 <html>
 <body>
 <h1>Вход в систему</h1>
-<form action="/entry" method="POST">
+<form action="/authorization" method="POST">
     <table>
         <tr>
             <td>Логин:</td>

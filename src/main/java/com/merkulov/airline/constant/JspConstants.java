@@ -5,4 +5,5 @@ public class JspConstants {
     public static final String EXCEPTION_JSP = "WEB-INF/jsp/exception.jsp";
     public static final String MAIN_JSP = "WEB-INF/jsp/main.jsp";
     public static final String REGISTRATION_JSP = "registration.jsp";
+    public static final String INDEX = "index.jsp";
 }

@@ -14,10 +14,9 @@ import java.util.Map;
 public class SqlConversationServiceImpl implements SqlConversationService {
     private Map<Class, SqlConverter> converters;
 
-    public SqlConversationServiceImpl(Class clazz) {
+    public SqlConversationServiceImpl() {
         converters = new HashMap<>();
-        if(clazz.equals(User.class))
-            converters.put(User.class, new UserSqlConverter());
+        converters.put(User.class, new UserSqlConverter());
     }
 
     @Override

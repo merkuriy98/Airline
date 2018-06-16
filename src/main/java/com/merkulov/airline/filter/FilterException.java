@@ -1,5 +1,6 @@
 package com.merkulov.airline.filter;
 
+import com.merkulov.airline.exception.ValidationException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.Filter;
@@ -23,13 +24,16 @@ public class FilterException implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        try{
-            filterChain.doFilter(servletRequest,servletResponse);
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        try {
+            filterChain.doFilter(request, response);
             LOG.info("FilterException request transfer to servlet");
-        }catch (Exception ex){
-            LOG.debug("Error in FilterException " + ex.getMessage());
-            servletRequest.getRequestDispatcher(EXCEPTION_JSP).forward(servletRequest,servletResponse);
+        } catch (ValidationException ex) {
+            request.setAttribute("errors", ex.getErrors());
+            request.getRequestDispatcher(ex.getForwardJsp()).forward(request,response);
+        } catch (Exception ex) {
+            LOG.warn("Error in FilterException " + ex.getMessage(),ex);
+            request.getRequestDispatcher(EXCEPTION_JSP).forward(request, response);
         }
     }
 
