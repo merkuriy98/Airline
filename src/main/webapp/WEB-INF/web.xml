@@ -4,6 +4,35 @@
 
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
+
+
+
+    <filter>
+        <filter-name>exception_filter</filter-name>
+        <filter-class>com.merkulov.airline.filter.FilterException</filter-class>
+    </filter>
+    <filter>
+        <filter-name>encoding_filter</filter-name>
+        <filter-class>com.merkulov.airline.filter.FilterEncoding</filter-class>
+    </filter>
+    <filter>
+        <filter-name>authadmin</filter-name>
+        <filter-class>com.merkulov.airline.filter.AuthAdminFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authadmin</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>encoding_filter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>exception_filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <listener>
         <listener-class>com.merkulov.airline.config.ApplicationServletContextListener</listener-class>
     </listener>

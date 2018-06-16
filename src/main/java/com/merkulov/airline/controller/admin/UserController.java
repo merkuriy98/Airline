@@ -1,4 +1,4 @@
-package com.merkulov.airline.controller;
+package com.merkulov.airline.controller.admin;
 
 import com.merkulov.airline.service.UserService;
 import org.apache.log4j.Logger;
@@ -14,10 +14,11 @@ import java.io.IOException;
 import static com.merkulov.airline.config.ApplicationServletContextListener.USER_SERVICE;
 import static com.merkulov.airline.constant.JspConstants.USER_JSP;
 
-@WebServlet("/user")
+@WebServlet("admin/user")
 public class UserController extends HttpServlet {
-    private UserService userService;
     private static final Logger LOG = Logger.getLogger(UserController.class);
+
+    private UserService userService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -25,9 +26,10 @@ public class UserController extends HttpServlet {
         userService = (UserService) config.getServletContext().getAttribute(USER_SERVICE);
         LOG.info("UserController init");
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            req.setAttribute("user", userService.getAllUsers());
-            req.getRequestDispatcher(USER_JSP).forward(req, resp);
+        req.setAttribute("user", userService.getAllUsers());
+        req.getRequestDispatcher(USER_JSP).forward(req, resp);
     }
 }

@@ -9,18 +9,16 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 import static com.merkulov.airline.constant.JspConstants.EXCEPTION_JSP;
 
-@WebFilter(urlPatterns = "/*")
 public class FilterException implements Filter {
-    private static final Logger LOG = Logger.getLogger(Filter.class);
+    private static final Logger LOG = Logger.getLogger(FilterException.class);
 
     @Override
     public void init(FilterConfig filterConfig) {
-        LOG.info("FilterException init");
+        LOG.info("FilterException#init");
     }
 
     @Override
@@ -29,10 +27,11 @@ public class FilterException implements Filter {
             filterChain.doFilter(request, response);
             LOG.info("FilterException request transfer to servlet");
         } catch (ValidationException ex) {
+            LOG.warn(ex.getErrors(), ex);
             request.setAttribute("errors", ex.getErrors());
-            request.getRequestDispatcher(ex.getForwardJsp()).forward(request,response);
+            request.getRequestDispatcher(ex.getForwardJsp()).forward(request, response);
         } catch (Exception ex) {
-            LOG.warn("Error in FilterException " + ex.getMessage(),ex);
+            LOG.warn("Error in FilterException " + ex.getMessage(), ex);
             request.getRequestDispatcher(EXCEPTION_JSP).forward(request, response);
         }
     }

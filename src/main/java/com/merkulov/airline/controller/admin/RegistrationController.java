@@ -1,7 +1,6 @@
-package com.merkulov.airline.controller;
+package com.merkulov.airline.controller.admin;
 
 import com.merkulov.airline.controller.converter.RequestConversationService;
-import com.merkulov.airline.entity.Role;
 import com.merkulov.airline.entity.User;
 import com.merkulov.airline.exception.ControllerException;
 import com.merkulov.airline.exception.ExceptionErrors;
@@ -21,9 +20,10 @@ import static com.merkulov.airline.config.ApplicationServletContextListener.REQU
 import static com.merkulov.airline.config.ApplicationServletContextListener.USER_SERVICE;
 import static com.merkulov.airline.constant.JspConstants.REGISTRATION_JSP;
 
-@WebServlet("/registration")
+@WebServlet("admin/registration")
 public class RegistrationController extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(RegistrationController.class);
+
     private UserService userService;
     private RequestConversationService conversationService;
 
@@ -39,7 +39,6 @@ public class RegistrationController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = conversationService.convert(req, User.class);
         checkConfirmPassword(user, req);
-        user.setRole(Role.USER);
 
         if (userService.insertUser(user)) {
             resp.sendRedirect("/index.jsp");

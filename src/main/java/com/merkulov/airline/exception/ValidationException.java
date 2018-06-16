@@ -10,24 +10,24 @@ public class ValidationException extends RuntimeException {
 
     public ValidationException(String forwardJsp, ExceptionErrors... errors) {
         this.errors = new HashSet(Arrays.asList(errors));
-        this.forwardJsp=forwardJsp;
+        this.forwardJsp = forwardJsp;
     }
 
     public ValidationException(String message, String forwardJsp, ExceptionErrors... errors) {
         super(message);
-        this.forwardJsp=forwardJsp;
+        this.forwardJsp = forwardJsp;
         this.errors = new HashSet(Arrays.asList(errors));
     }
 
     public ValidationException(String message, Throwable cause, String forwardJsp, ExceptionErrors... errors) {
         super(message, cause);
-        this.forwardJsp=forwardJsp;
+        this.forwardJsp = forwardJsp;
         this.errors = new HashSet(Arrays.asList(errors));
     }
 
-    public ValidationException(Throwable cause,String forwardJsp,  ExceptionErrors... errors) {
+    public ValidationException(Throwable cause, String forwardJsp, ExceptionErrors... errors) {
         super(cause);
-        this.forwardJsp=forwardJsp;
+        this.forwardJsp = forwardJsp;
         this.errors = new HashSet(Arrays.asList(errors));
     }
 

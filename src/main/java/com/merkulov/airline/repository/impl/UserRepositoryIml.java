@@ -55,7 +55,7 @@ public class UserRepositoryIml implements UserRepository {
         pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
-            return sqlConversationService.convert(rs,User.class);
+            return sqlConversationService.convert(rs, User.class);
         }
         return null;
     }

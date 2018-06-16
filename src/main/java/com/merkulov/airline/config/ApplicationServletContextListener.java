@@ -1,7 +1,6 @@
 package com.merkulov.airline.config;
 
 import com.merkulov.airline.controller.converter.impl.RequestConversationServiceImpl;
-import com.merkulov.airline.entity.User;
 import com.merkulov.airline.repository.UserRepository;
 import com.merkulov.airline.repository.converter.SqlConversationService;
 import com.merkulov.airline.repository.converter.impl.SqlConversationServiceImpl;

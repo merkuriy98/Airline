@@ -1,4 +1,4 @@
 package com.merkulov.airline.entity;
 
-public class Admin {
+public enum StatusFlight {
 }

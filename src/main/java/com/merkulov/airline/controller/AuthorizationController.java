@@ -19,7 +19,7 @@ import static com.merkulov.airline.config.ApplicationServletContextListener.USER
 import static com.merkulov.airline.constant.JspConstants.MAIN_JSP;
 
 @WebServlet("/authorization")
-class AuthorizationController extends HttpServlet {
+public class AuthorizationController extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(AuthorizationController.class);
 
     private UserService userService;
@@ -33,6 +33,7 @@ class AuthorizationController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         User user = userService.authorization(login, password);

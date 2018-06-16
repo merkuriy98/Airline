@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAllUsers();
+
     boolean insertUser(User user);
-    User authorization (String login, String password);
+
+    User authorization(String login, String password);
 }
