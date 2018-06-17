@@ -13,11 +13,11 @@
 </head>
 <body>
 <table border="1">
-    <c:forEach items='${user}' var="j">
-        <tr>
-            <c:out value='${j.firstName}'/>
-        </tr>
-    </c:forEach>
+    <%--<c:forEach items='${user}' var="j">--%>
+        <%--<tr>--%>
+            <%--<c:out value='${j.firstName}'/>--%>
+        <%--</tr>--%>
+    <%--</c:forEach>--%>
 </table>
 </body>
 </html>

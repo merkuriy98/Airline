@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.merkulov.airline.config.ApplicationServletContextListener.USER_SERVICE;
-import static com.merkulov.airline.constant.JspConstants.USER_JSP;
+import static com.merkulov.airline.constant.JspConstants.MAIN_JSP;
 
-@WebServlet("admin/user")
+@WebServlet("/admin/user")
 public class UserController extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(UserController.class);
 
@@ -29,7 +29,7 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("user", userService.getAllUsers());
-        req.getRequestDispatcher(USER_JSP).forward(req, resp);
+//        req.setAttribute("user", userService.getAllUsers());
+        req.getRequestDispatcher(MAIN_JSP).forward(req, resp);
     }
 }

@@ -12,7 +12,7 @@ public class UserSqlConverter implements SqlConverter<User> {
     @Override
     public User convert(ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.setId(resultSet.getInt("id"));
+        user.setId(resultSet.getLong("id"));
         user.setRole(Role.valueOf(resultSet.getString("role_name")));
         user.setFirstName(resultSet.getString("first_name"));
         user.setLastName(resultSet.getString("last_name"));

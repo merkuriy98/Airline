@@ -1,6 +1,7 @@
 package com.merkulov.airline.controller.converter.impl;
 
 import com.merkulov.airline.controller.converter.RequestConverter;
+import com.merkulov.airline.entity.Role;
 import com.merkulov.airline.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ public class RequestToUserConverter implements RequestConverter<User> {
         user.setFirstName(request.getParameter("firstName"));
         user.setLastName(request.getParameter("lastName"));
         user.setLogin(request.getParameter("login"));
+        user.setRole(Role.valueOf(request.getParameter("role")));
         user.setBirthday(Date.valueOf(request.getParameter("birthday")));
         user.setPhone(request.getParameter("phone"));
         user.setPassword(request.getParameter("pass1"));

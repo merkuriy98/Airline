@@ -1,5 +1,6 @@
 package com.merkulov.airline.repository.transaction.impl;
 
+import com.merkulov.airline.exception.RepositoryException;
 import com.merkulov.airline.repository.transaction.TransactionManager;
 import com.merkulov.airline.repository.transaction.TransactionMethod;
 import org.apache.log4j.Logger;
@@ -24,7 +25,7 @@ public class TransactionManagerImpl implements TransactionManager {
             return transaction(transactionMethod, connection);
         } catch (SQLException e) {
             LOG.debug("Error SQL Connection " + e.getMessage());
-            throw new RuntimeException();//DataSourceException
+            throw new RepositoryException("Don't get a connection from datasourse", e);
         }
     }
 
@@ -38,7 +39,7 @@ public class TransactionManagerImpl implements TransactionManager {
         } catch (SQLException e) {
             connection.rollback();
             LOG.warn("Error, transact has rollback" + e.getMessage());
-            throw new RuntimeException();//RepositoryException
+            throw new RepositoryException("Don't get a connection from datasourse", e);
         }
 
     }

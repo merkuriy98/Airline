@@ -7,6 +7,7 @@ import com.merkulov.airline.repository.converter.impl.SqlConversationServiceImpl
 import com.merkulov.airline.repository.impl.UserRepositoryIml;
 import com.merkulov.airline.repository.transaction.TransactionManager;
 import com.merkulov.airline.repository.transaction.impl.TransactionManagerImpl;
+import com.merkulov.airline.service.impl.RoleServiceImpl;
 import com.merkulov.airline.service.impl.UserServiceImpl;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -21,8 +22,9 @@ import javax.sql.DataSource;
 public class ApplicationServletContextListener implements ServletContextListener {
     private static final Logger LOG = Logger.getLogger(ApplicationServletContextListener.class);
 
-    public static final String USER_SERVICE = "userService";
     public static final String REQUEST_CONVERSATION_SERVICE = "requestConversationService";
+    public static final String USER_SERVICE = "userService";
+    private static final String ROLE_SERVICE = "roleService";
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -51,7 +53,9 @@ public class ApplicationServletContextListener implements ServletContextListener
         SqlConversationService sqlConversationService = new SqlConversationServiceImpl();
 
         UserRepository userRepository = new UserRepositoryIml(sqlConversationService);
+
         servletContext.setAttribute(USER_SERVICE, new UserServiceImpl(transactionManager, userRepository));
+        servletContext.setAttribute(ROLE_SERVICE, new RoleServiceImpl());
 
         String pref = servletContext.getRealPath("/" + "WEB-INF/log4j.properties");
         PropertyConfigurator.configure(pref);

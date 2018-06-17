@@ -20,7 +20,7 @@
     </table>
 </form>
 
-<form method="post" action="registration.jsp">
+<form method="post" action="WEB-INF/jsp/registration.jsp">
     <input type="submit" value="Регистрация" />
 </form>
 </body>

@@ -1,5 +1,8 @@
 package com.merkulov.airline.repository.converter.impl;
 
+import com.merkulov.airline.entity.Airport;
+import com.merkulov.airline.entity.Flight;
+import com.merkulov.airline.entity.Plane;
 import com.merkulov.airline.entity.User;
 import com.merkulov.airline.repository.converter.SqlConversationService;
 import com.merkulov.airline.repository.converter.SqlConverter;
@@ -17,6 +20,9 @@ public class SqlConversationServiceImpl implements SqlConversationService {
     public SqlConversationServiceImpl() {
         converters = new HashMap<>();
         converters.put(User.class, new UserSqlConverter());
+        converters.put(Plane.class, new PlaneSqlConverter());
+        converters.put(Airport.class, new AirportSqlConverter());
+        converters.put(Flight.class, new FlightSqlConverter());
     }
 
     @Override

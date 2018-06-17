@@ -13,6 +13,7 @@
 <body>
 <h2><centre>
     Вы успешно вошли!
+    <a href="admin/registration">Добавить нового пользователя</a>
 </centre></h2>
 </body>
 </html>

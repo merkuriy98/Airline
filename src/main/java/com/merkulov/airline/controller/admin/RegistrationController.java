@@ -1,6 +1,8 @@
 package com.merkulov.airline.controller.admin;
 
+import com.merkulov.airline.constant.JspConstants;
 import com.merkulov.airline.controller.converter.RequestConversationService;
+import com.merkulov.airline.entity.Role;
 import com.merkulov.airline.entity.User;
 import com.merkulov.airline.exception.ControllerException;
 import com.merkulov.airline.exception.ExceptionErrors;
@@ -20,7 +22,7 @@ import static com.merkulov.airline.config.ApplicationServletContextListener.REQU
 import static com.merkulov.airline.config.ApplicationServletContextListener.USER_SERVICE;
 import static com.merkulov.airline.constant.JspConstants.REGISTRATION_JSP;
 
-@WebServlet("admin/registration")
+@WebServlet("/admin/registration")
 public class RegistrationController extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(RegistrationController.class);
 
@@ -33,6 +35,11 @@ public class RegistrationController extends HttpServlet {
         userService = (UserService) config.getServletContext().getAttribute(USER_SERVICE);
         conversationService = (RequestConversationService) config.getServletContext().getAttribute(REQUEST_CONVERSATION_SERVICE);
         LOG.info("RegistrationController #init");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher(JspConstants.REGISTRATION_JSP).forward(req,resp);
     }
 
     @Override
