@@ -1,12 +1,15 @@
 package com.merkulov.airline.config;
 
 import com.merkulov.airline.controller.converter.impl.RequestConversationServiceImpl;
+import com.merkulov.airline.repository.FlightRepository;
 import com.merkulov.airline.repository.UserRepository;
 import com.merkulov.airline.repository.converter.SqlConversationService;
 import com.merkulov.airline.repository.converter.impl.SqlConversationServiceImpl;
+import com.merkulov.airline.repository.impl.FlightRepositoryIml;
 import com.merkulov.airline.repository.impl.UserRepositoryIml;
 import com.merkulov.airline.repository.transaction.TransactionManager;
 import com.merkulov.airline.repository.transaction.impl.TransactionManagerImpl;
+import com.merkulov.airline.service.impl.FlightServiceImpl;
 import com.merkulov.airline.service.impl.RoleServiceImpl;
 import com.merkulov.airline.service.impl.UserServiceImpl;
 import org.apache.log4j.Logger;
@@ -24,6 +27,7 @@ public class ApplicationServletContextListener implements ServletContextListener
 
     public static final String REQUEST_CONVERSATION_SERVICE = "requestConversationService";
     public static final String USER_SERVICE = "userService";
+    public static final String FLIGHT_SERVICE = "flightService";
     private static final String ROLE_SERVICE = "roleService";
 
     @Override
@@ -53,9 +57,11 @@ public class ApplicationServletContextListener implements ServletContextListener
         SqlConversationService sqlConversationService = new SqlConversationServiceImpl();
 
         UserRepository userRepository = new UserRepositoryIml(sqlConversationService);
+        FlightRepository flightRepository = new FlightRepositoryIml(sqlConversationService);
 
         servletContext.setAttribute(USER_SERVICE, new UserServiceImpl(transactionManager, userRepository));
         servletContext.setAttribute(ROLE_SERVICE, new RoleServiceImpl());
+        servletContext.setAttribute(FLIGHT_SERVICE, new FlightServiceImpl(transactionManager, flightRepository));
 
         String pref = servletContext.getRealPath("/" + "WEB-INF/log4j.properties");
         PropertyConfigurator.configure(pref);

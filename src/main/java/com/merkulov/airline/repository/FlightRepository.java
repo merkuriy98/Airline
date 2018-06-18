@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface AdminRepository {
+public interface FlightRepository {
     List<Flight> getAllFlight(Connection connection) throws SQLException;
-    boolean addFlight(Connection connection,Flight flight);
+    boolean addFlight(Connection connection,Flight flight) throws SQLException;
     boolean removeFlight(Connection connection,Flight flight);
 
 }

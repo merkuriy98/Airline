@@ -29,7 +29,7 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.setAttribute("user", userService.getAllUsers());
+      req.setAttribute("user", userService.getAllUsers());
         req.getRequestDispatcher(MAIN_JSP).forward(req, resp);
     }
 }

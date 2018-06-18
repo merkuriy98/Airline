@@ -6,4 +6,5 @@ import java.sql.SQLException;
 public interface SqlConverter<T> {
 
     T convert(ResultSet resultSet) throws SQLException;
+
 }

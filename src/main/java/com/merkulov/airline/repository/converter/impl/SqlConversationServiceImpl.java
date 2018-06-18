@@ -20,8 +20,8 @@ public class SqlConversationServiceImpl implements SqlConversationService {
     public SqlConversationServiceImpl() {
         converters = new HashMap<>();
         converters.put(User.class, new UserSqlConverter());
-        converters.put(Plane.class, new PlaneSqlConverter());
-        converters.put(Airport.class, new AirportSqlConverter());
+//        converters.put(Plane.class, new PlaneSqlConverter());
+//        converters.put(Airport.class, new AirportSqlConverter());
         converters.put(Flight.class, new FlightSqlConverter());
     }
 

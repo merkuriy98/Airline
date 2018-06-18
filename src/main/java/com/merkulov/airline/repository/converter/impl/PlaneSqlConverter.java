@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PlaneSqlConverter implements SqlConverter<Plane> {
+
     @Override
     public Plane convert(ResultSet resultSet) throws SQLException {
         Plane plane = new Plane();
@@ -14,6 +15,16 @@ public class PlaneSqlConverter implements SqlConverter<Plane> {
         plane.setId(resultSet.getLong("id)"));
         plane.setName(resultSet.getString("name)"));
         plane.setModel(resultSet.getString("model"));
+
+        return plane;
+    }
+
+    public Plane convert(ResultSet resultSet, String alias) throws SQLException {
+        Plane plane = new Plane();
+
+        plane.setId(resultSet.getLong(alias + "id)"));
+        plane.setName(resultSet.getString(alias + "name)"));
+        plane.setModel(resultSet.getString(alias + "model"));
 
         return plane;
     }

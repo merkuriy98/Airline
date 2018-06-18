@@ -67,4 +67,17 @@ public class Flight extends AbstactEntity<Long> {
     public void setBrigade(Set<Employee> brigade) {
         this.brigade = brigade;
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "numberFlight=" + numberFlight +
+                ", plane=" + plane +
+                ", departureAirport=" + departureAirport +
+                ", arrivalAirport=" + arrivalAirport +
+                ", date=" + date +
+                ", statusFlight=" + statusFlight +
+                ", brigade=" + brigade +
+                '}';
+    }
 }

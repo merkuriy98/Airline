@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AirportSqlConverter implements SqlConverter<Airport> {
+
     @Override
     public Airport convert(ResultSet resultSet) throws SQLException {
         Airport airport = new Airport();
@@ -15,6 +16,17 @@ public class AirportSqlConverter implements SqlConverter<Airport> {
         airport.setName(resultSet.getString("name"));
         airport.setCity(resultSet.getString("city"));
         airport.setCountry(resultSet.getString("country"));
+
+        return airport;
+    }
+
+    public Airport convert(ResultSet resultSet, String alias) throws SQLException {
+        Airport airport = new Airport();
+
+        airport.setId(resultSet.getLong(alias + "id"));
+        airport.setName(resultSet.getString(alias + "name"));
+        airport.setCity(resultSet.getString(alias + "city"));
+        airport.setCountry(resultSet.getString(alias + "country"));
 
         return airport;
     }
