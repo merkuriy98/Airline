@@ -16,22 +16,18 @@ public class FlightSqlConverter implements SqlConverter<Flight> {
 
     @Override
     public Flight convert(ResultSet resultSet) throws SQLException {
-        return  convert(resultSet, "flights.");
-    }
-
-    public Flight convert(ResultSet resultSet, String alias) throws SQLException {
         Flight flight = new Flight();
 
-        flight.setId(resultSet.getLong( "id"));
+        flight.setId(resultSet.getLong( "id_f"));
         flight.setNumberFlight(resultSet.getInt( "number_flight"));
-        flight.setPlane(planeSqlConverter.convert(resultSet, "planes."));
-        flight.setDepartureAirport(airportSqlConverter.convert(resultSet, "a1."));
-        flight.setArrivalAirport(airportSqlConverter.convert(resultSet, "a2."));
+        flight.setPlane(planeSqlConverter.convert(resultSet, "_p"));
+        flight.setDepartureAirport(airportSqlConverter.convert(resultSet,"_a1"));
+        flight.setArrivalAirport(airportSqlConverter.convert(resultSet, "_a2"));
 
-        Timestamp sqlTimestamp = resultSet.getTimestamp( "data");
+        Timestamp sqlTimestamp = resultSet.getTimestamp( "date");
 
         flight.setDate(sqlTimestamp.toInstant().atZone(ZoneOffset.UTC));
-        flight.setStatusFlight(StatusFlight.valueOf(resultSet.getString(alias + "status")));
+        flight.setStatusFlight(StatusFlight.valueOf(resultSet.getString("status")));
 
         return flight;
     }

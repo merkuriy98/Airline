@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.merkulov.airline.config.ApplicationServletContextListener.FLIGHT_SERVICE;
+import static com.merkulov.airline.constant.JspConstants.MAIN_JSP;
 
 @WebServlet("/admin/test")
 public class FlightController extends HttpServlet{
@@ -29,6 +30,6 @@ public class FlightController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("test", flightService.getAllFlight());
-        req.getRequestDispatcher("MAIN_JSP").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/test.jsp").forward(req,resp);
     }
 }

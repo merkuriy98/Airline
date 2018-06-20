@@ -12,8 +12,8 @@ public class PlaneSqlConverter implements SqlConverter<Plane> {
     public Plane convert(ResultSet resultSet) throws SQLException {
         Plane plane = new Plane();
 
-        plane.setId(resultSet.getLong("id)"));
-        plane.setName(resultSet.getString("name)"));
+        plane.setId(resultSet.getLong("id"));
+        plane.setName(resultSet.getString("name"));
         plane.setModel(resultSet.getString("model"));
 
         return plane;
@@ -22,9 +22,9 @@ public class PlaneSqlConverter implements SqlConverter<Plane> {
     public Plane convert(ResultSet resultSet, String alias) throws SQLException {
         Plane plane = new Plane();
 
-        plane.setId(resultSet.getLong(alias + "id)"));
-        plane.setName(resultSet.getString(alias + "name)"));
-        plane.setModel(resultSet.getString(alias + "model"));
+        plane.setId(resultSet.getLong("id" + alias));
+        plane.setName(resultSet.getString("name" + alias));
+        plane.setModel(resultSet.getString("model" + alias));
 
         return plane;
     }

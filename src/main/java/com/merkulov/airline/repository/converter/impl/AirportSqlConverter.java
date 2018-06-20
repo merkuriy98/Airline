@@ -23,10 +23,10 @@ public class AirportSqlConverter implements SqlConverter<Airport> {
     public Airport convert(ResultSet resultSet, String alias) throws SQLException {
         Airport airport = new Airport();
 
-        airport.setId(resultSet.getLong(alias + "id"));
-        airport.setName(resultSet.getString(alias + "name"));
-        airport.setCity(resultSet.getString(alias + "city"));
-        airport.setCountry(resultSet.getString(alias + "country"));
+        airport.setId(resultSet.getLong("id" + alias));
+        airport.setName(resultSet.getString("name" + alias));
+        airport.setCity(resultSet.getString("city" + alias));
+        airport.setCountry(resultSet.getString("country" + alias));
 
         return airport;
     }

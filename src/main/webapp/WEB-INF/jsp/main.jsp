@@ -16,9 +16,6 @@
     <a href="admin/registration">Добавить нового пользователя</a>
 </centre></h2>
 
-<br>
-<c:forEach items='${test}' var="j">
-    <c:out value='${j}'/>
-</c:forEach>
+
 </body>
 </html>
