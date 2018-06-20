@@ -1,80 +1,78 @@
 CREATE TABLE users (
   id         SERIAL PRIMARY KEY,
-  first_name VARCHAR(20) NOT NULL,
-  last_name  VARCHAR(32) NOT NULL,
-  login      VARCHAR(20) NOT NULL,
-  birthday   DATE        NOT NULL,
-  phone      CHAR(12)    NOT NULL,
-  password   CHAR(32)    NOT NULL
+  role_name  varchar(255) not Null,
+  first_name VARCHAR(255) NOT NULL,
+  last_name  VARCHAR(255) NOT NULL,
+  login      VARCHAR(255) NOT NULL,
+  birthday   DATE NOT NULL,
+  phone      CHAR(13)    NOT NULL,
+  password   VARCHAR(255)    NOT NULL
 );
 
-CREATE TABLE admins (
+CREATE TABLE employes (
   id         SERIAL PRIMARY KEY,
-  first_name VARCHAR(20) NOT NULL,
-  last_name  VARCHAR(32) NOT NULL,
-  login      VARCHAR(20) NOT NULL,
-  password   CHAR(32)    NOT NULL
+  first_name VARCHAR(255) NOT NULL,
+  last_name  VARCHAR(255) NOT NULL,
+  type_name  varchar(255) not null
 );
-
-CREATE TABLE pilots (
-  id         SERIAL PRIMARY KEY,
-  first_name VARCHAR(20) NOT NULL,
-  last_name  VARCHAR(32) NOT NULL,
-  status     BOOLEAN     NOT NULL
-);
-
-CREATE TABLE navigators (
-  id         SERIAL PRIMARY KEY,
-  first_name VARCHAR(20) NOT NULL,
-  last_name  VARCHAR(32) NOT NULL,
-  status     BOOLEAN     NOT NULL
-);
-
-CREATE TABLE radiomans (
-  id         SERIAL PRIMARY KEY,
-  first_name VARCHAR(20) NOT NULL,
-  last_name  VARCHAR(32) NOT NULL,
-  status     BOOLEAN     NOT NULL
-);
-
-CREATE TABLE brigades (
-  id          SERIAL PRIMARY KEY,
-  id_pilot    INT NOT NULL,
-  id_navigatr INT NOT NULL,
-  id_radioman INT NOT NULL,
-  id_hostes   INT NOT NULL,
-  FOREIGN KEY (id_pilot) REFERENCES pilots (id),
-  FOREIGN KEY (id_navigatr) REFERENCES navigators (id),
-  FOREIGN KEY (id_radioman) REFERENCES radiomans (id),
-  FOREIGN KEY (id_hostes) REFERENCES hostess (id)
-);
-
 
 CREATE TABLE planes (
   id    SERIAL PRIMARY KEY,
-  name  VARCHAR(20) NOT NULL,
-  model VARCHAR(20) NOT NULL
+  name  VARCHAR(255) NOT NULL,
+  model VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE airports (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL,
-  city VARCHAR(20) NOT NULL,
-  country VARCHAR(20) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  country VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE flights (
-  number INT NOT NULL PRIMARY KEY,
+  id serial primary key,
+  number_flight INT NOT null unique,
   id_plane INT NOT NULL,
   departure_airport INT NOT NULL,
   arrival_aiport INT NOT NULL,
-  date DATE NOT NULL,
-  time TIME NOT NULL ,
-  id_brigade INT NOT NULL ,
-  status BOOLEAN NOT NULL,
+  date timestamp NOT NULL,
+  status varchar(255) NOT NULL,
   FOREIGN KEY (id_plane) REFERENCES planes (id),
   FOREIGN KEY (departure_airport) REFERENCES airports(id),
-  FOREIGN KEY (arrival_aiport) REFERENCES airports(id),
-  FOREIGN KEY (id_brigade) REFERENCES brigades(id)
+  FOREIGN KEY (arrival_aiport) REFERENCES airports(id)
+);
 
-)
+CREATE TABLE flights_employes (
+  id_flight  INT not null,
+  id_employee    INT not null,
+   FOREIGN KEY (id_flight) REFERENCES flights (id),
+  FOREIGN KEY (id_employee) REFERENCES employes (id)
+);
+
+
+
+INSERT INTO users (role_name,first_name, last_name, login, birthday, phone, password)
+VALUES ('ADMIN','Roma', 'Merkulov', 'roma24', '1998-07-24', '+38123456789', '0000');
+
+INSERT INTO employes (first_name, last_name, type_name)
+VALUES ('Александр', 'Макаренко','PILOT'),
+('Дмитрий', 'Таранов', 'PILOT'),
+('Игорь', 'Бабенко', 'RADIOMAN'), ('Евгений', 'Муский','RADIOMAN'),
+('Артур', 'Сердюк','NAVIGATOR'), ('Николай', 'Соболев','NAVIGATOR'),
+('Анна', 'Сокол','HOSTESS'), ('Виктория', 'Домбровская','HOSTESS');
+
+INSERT INTO planes (name, model) VALUES
+  ('Airbus', 'A32neo'), ('Boeing', '737MAX');
+
+INSERT INTO airports (name, city, country) VALUES
+  ('Kharkiv airport', 'Харьков', 'Украина'), 
+  ('Boryspil airport', 'Борисполь', 'Украина'),
+  ('Stambul airport', 'Стамбул', 'Турция');
+
+INSERT INTO flights (number_flight, id_plane, departure_airport, arrival_aiport, date, status)
+VALUES ('826', 1, 1, 3, timestamp '2018-06-16 18:38:00', 'CLOSE');
+ 
+INSERT INTO flights_employes (id_flight, id_employee)
+VALUES (1, 1),(1,2),(1,3),(1,4);
+
+
